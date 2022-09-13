@@ -31,7 +31,12 @@ public class Main {
             return;
         }
         result.add(weights[index]);
+        // can't pick repeatly the same number
+        // knapsack(target - weights[index], weights, index + 1, result, results);
+
+        // pick repeatly the same number
         knapsack(target - weights[index], weights, index, result, results);
+
         result.remove(result.size() - 1);
         knapsack(target, weights, index + 1, result, results);
     }
