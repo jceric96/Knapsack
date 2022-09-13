@@ -30,15 +30,29 @@ public class Main {
         if (target < 0 || index >= weights.length) {
             return;
         }
-        result.add(weights[index]);
+
+        // result.add(weights[index]);
+
         // can't pick repeatly the same number
         // knapsack(target - weights[index], weights, index + 1, result, results);
-
         // pick repeatly the same number
-        knapsack(target - weights[index], weights, index, result, results);
+        // knapsack(target - weights[index], weights, index, result, results);
 
-        result.remove(result.size() - 1);
-        knapsack(target, weights, index + 1, result, results);
+        // result.remove(result.size() - 1);
+        // knapsack(target, weights, index + 1, result, results);
+
+        // reduce two recursions to one recursion
+        for (int i = index; i < weights.length; i++) {
+            result.add(weights[i]);
+
+            // can't pick repeatly the same number
+            // knapsack(target - weights[i], weights, i + 1, result, results);
+
+            // pick repeatly the same number
+            knapsack(target - weights[i], weights, i, result, results);
+
+            result.remove(result.size() - 1);
+        }
     }
 
     public static void main(String[] args) {
