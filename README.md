@@ -11,7 +11,8 @@ Given a set of weights numbers (W) and a target number(T), find all unique combi
 question: 
 1. Are all weights numbers unique?
 2. Can the same number be chosen multiple times(unlimited times)?
-3. at least one result be returned?
+3. At least one result be returned?
+4. shold I sort weights[] before picking?
 
 Example input: target= 25; weights= [14,8,7,5,3];
 
