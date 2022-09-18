@@ -92,23 +92,6 @@ public class Main {
         return;
     }
 
-    // find maximum weights number
-    public int MaxknapsackII(int target, int[] weights) {
-        return maxknapsackII(target, weights, 0);
-    }
-
-    private int maxknapsackII(int target, int[] weights, int index) {
-        if (target == 0 || index == weights.length) {
-            return 0;
-        }
-        if (target < weights[index]) {
-            maxknapsackII(target, weights, index + 1);
-        }
-
-        return Math.max(maxknapsackII(target, weights, index + 1),
-                weights[index] + maxknapsackII(target - weights[index], weights, index + 1));
-    }
-
     public static void main(String[] args) {
         int[] weights = new int[] { 14, 8, 7, 5, 3 };
         int[] weights2 = new int[] { 2, 3, 3, 3, 6, 7 };
@@ -122,7 +105,5 @@ public class Main {
         System.out.println(knapsack(weights, target));
         // print knapsack results used each number once time with duplicate numbers
         System.out.println(knapsackII(weights2, target2));
-        Main knap = new Main();
-        System.out.println(knap.MaxknapsackII(2, weights2));
     }
 }
