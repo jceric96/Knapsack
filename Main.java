@@ -13,6 +13,8 @@ public class Main {
         return knapsack(target - weights[index], weights, index + 1) || knapsack(target, weights, index + 1);
     }
 
+    // return all results weights with no duplicate numbers used unlimited times for
+    // each number
     public static ArrayList<ArrayList<Integer>> knapsack(int[] weights, int target) {
         // it is unnecessary if no duplicate numbers or no order required
         // Arrays.sort(weights);
@@ -53,6 +55,8 @@ public class Main {
         }
     }
 
+    // return all results weights contains duplicate numbers
+    // and using each number once
     public static ArrayList<ArrayList<Integer>> knapsackII(int[] weights, int target) {
         // sort weights before beginning if weights contains duplicate numbers
         // or sort required
@@ -88,6 +92,23 @@ public class Main {
         return;
     }
 
+    // find maximum weights number
+    public int MaxknapsackII(int target, int[] weights) {
+        return maxknapsackII(target, weights, 0);
+    }
+
+    private int maxknapsackII(int target, int[] weights, int index) {
+        if (target == 0 || index == weights.length) {
+            return 0;
+        }
+        if (target < weights[index]) {
+            maxknapsackII(target, weights, index + 1);
+        }
+
+        return Math.max(maxknapsackII(target, weights, index + 1),
+                weights[index] + maxknapsackII(target - weights[index], weights, index + 1));
+    }
+
     public static void main(String[] args) {
         int[] weights = new int[] { 14, 8, 7, 5, 3 };
         int[] weights2 = new int[] { 2, 3, 3, 3, 6, 7 };
@@ -101,5 +122,7 @@ public class Main {
         System.out.println(knapsack(weights, target));
         // print knapsack results used each number once time with duplicate numbers
         System.out.println(knapsackII(weights2, target2));
+        Main knap = new Main();
+        System.out.println(knap.MaxknapsackII(2, weights2));
     }
 }
